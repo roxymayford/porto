@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .grid-bg-subtle {
+    background-color: #FAF9F5;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .grid-bg-purple {
+    background-color: #7E69F2;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .grid-bg-dark {
+    background-color: #111111;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Chunky button tactile press effect */
+  .btn-brutal {
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .btn-brutal:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #111111;
+  }
+  .btn-brutal:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #111111;
+  }
+
+  /* Starburst SVG accent spin on hover */
+  .starburst-badge {
+    animation: slow-spin 20s linear infinite;
+  }
+
+  /* Utility to completely suppress scrollbars on inner containers */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Scrollbar Styling ─────────────────────────────────────────────────── */
+/* Remove default scrollbar visual noise — clean minimal track */
+html {
+  /* DO NOT set scroll-behavior: smooth — it conflicts with GSAP ScrollTrigger
+     scrub animations and causes janky, fighting scroll behavior. GSAP handles
+     all smooth scroll interpolation via scrub values. */
+  scrollbar-width: thin;
+  scrollbar-color: #111111 transparent;
+}
+
+/* WebKit scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #111111;
+  border-radius: 0;
+  border: 1px solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7E69F2;
+}
+
+/* Prevent GSAP-animated elements from showing overflow artifacts during entrance.
+   Only apply to sections where elements slide in from offscreen. */
+[data-purpose='skills-marquee'],
+[data-purpose='certifications-sidebar'] {
+  overflow: hidden;
+}
+
+/* Ensure buttons are never affected by parent GSAP transforms */
+.btn-brutal {
+  position: relative;
+  z-index: 1;
+}
