@@ -1,74 +1,69 @@
 import * as React from "react";
 
+interface SkillItem {
+  name: string;
+  category: string;
+  level: string;
+  pillColor: string;
+}
+
+const skillsData: SkillItem[] = [
+  { name: "React.js", category: "Frontend", level: "Expert", pillColor: "text-[#00BFFF]" },
+  { name: "TypeScript", category: "Language", level: "Senior", pillColor: "text-[#00BFFF]" },
+  { name: "Next.js", category: "Full-Stack", level: "Production", pillColor: "text-[#FF4F00]" },
+  { name: "Node.js", category: "Backend", level: "Advanced", pillColor: "text-[#5D3FD3]" },
+  { name: "Go / Golang", category: "Backend", level: "Advanced", pillColor: "text-[#00BFFF]" },
+  { name: "Tailwind CSS", category: "Styling", level: "Expert", pillColor: "text-[#FF4F00]" },
+  { name: "Docker", category: "DevOps", level: "Production", pillColor: "text-[#D5006D]" },
+  { name: "PostgreSQL", category: "Database", level: "Advanced", pillColor: "text-[#00BFFF]" },
+  { name: "Git / CI/CD", category: "Workflow", level: "Expert", pillColor: "text-[#FF6F00]" },
+  { name: "Performance", category: "Core", level: "99+ Score", pillColor: "text-[#FFEA00]" },
+];
+
 export function Skills() {
   return (
-    <section className="border-b-4 border-black bg-white flex flex-col md:flex-row items-stretch" data-purpose="skills-marquee" id="skills">
-      {/* Purple Badge Header */}
-      <div className="bg-brand-purple text-white px-8 py-5 flex items-center justify-between md:justify-center gap-3 border-b-4 md:border-b-0 md:border-r-4 border-black min-w-[200px]">
-        <span className="font-black text-xl uppercase tracking-wider">SKILLS</span>
-        <svg className="w-5 h-5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+    <section className="border-b-4 border-[#292929] bg-[#1F2022] flex flex-col md:flex-row items-stretch" data-purpose="skills-marquee" id="skills">
+      {/* Brand Header */}
+      <div className="bg-[#292929] text-[#E8F8F5] px-6 sm:px-8 py-6 flex items-center justify-between md:justify-center gap-4 border-b-4 md:border-b-0 md:border-r-4 border-[#292929] min-w-[220px]">
+        <div>
+          <span className="font-mono text-xs font-bold text-[#FF4F00] block uppercase tracking-widest">Stack</span>
+          <span className="font-black text-2xl uppercase tracking-tight text-white">SKILLS</span>
+        </div>
+        <div className="w-9 h-9 bg-[#1F2022] text-[#FFEA00] border border-[#292929] flex items-center justify-center font-black">
+          ⚡
+        </div>
       </div>
 
-      {/* Tech Stack Icons Row */}
-      <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-black overflow-hidden no-scrollbar">
-        {/* React */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <svg className="w-7 h-7" viewBox="-11.5 -10.23174 23 20.46348">
-            <circle cx="0" cy="0" fill="#111111" r="2.05" />
-            <g fill="none" stroke="#111111" strokeWidth="1">
-              <ellipse rx="11" ry="4.2" />
-              <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-              <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-            </g>
-          </svg>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">React</span>
-        </div>
+      {/* Tech Stack Responsive Grid */}
+      <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-[#292929] bg-[#1F2022]">
+        {skillsData.map((skill, index) => (
+          <div 
+            key={index}
+            className="p-4 sm:p-5 flex flex-col justify-between hover:bg-[#292929] transition-all cursor-default group border-b sm:border-b-0 border-[#292929]"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#E8F8F5]/50">
+                {skill.category}
+              </span>
+              <span className={`font-mono text-[9px] font-black uppercase px-2 py-0.5 border border-[#292929] bg-[#1F2022] ${skill.pillColor}`}>
+                {skill.level}
+              </span>
+            </div>
 
-        {/* TypeScript */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <div className="w-7 h-7 bg-black text-white font-mono font-black text-xs flex items-center justify-center rounded-none border border-black">
-            TS
+            <div>
+              <h3 className="font-black text-base text-[#E8F8F5] tracking-tight group-hover:text-[#FF4F00] transition-colors">
+                {skill.name}
+              </h3>
+            </div>
+
+            <div className="w-full h-1 bg-[#292929] mt-3 overflow-hidden">
+              <div 
+                className="h-full bg-[#FF4F00]"
+                style={{ width: `${80 + (index % 3) * 7}%` }}
+              ></div>
+            </div>
           </div>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">TypeScript</span>
-        </div>
-
-        {/* Node.js */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <div className="w-7 h-7 border-2 border-black font-mono font-black text-xs flex items-center justify-center">
-            JS
-          </div>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">Node.js</span>
-        </div>
-
-        {/* Tailwind CSS */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-            <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.02,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.982,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.532,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.982,12,6.001,12z" />
-          </svg>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">Tailwind CSS</span>
-        </div>
-
-        {/* MongoDB */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <svg className="w-7 h-7 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-            <path d="M12 2v20M12 2c2.5 4 6 7.5 6 12 0 4-2.5 6-6 6M12 2C9.5 6 6 9.5 6 14c0 4 2.5 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">MongoDB</span>
-        </div>
-
-        {/* Git */}
-        <div className="p-4 flex flex-col items-center justify-center gap-2 hover:bg-brand-lime/20 transition-colors">
-          <svg className="w-7 h-7 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-            <rect fill="none" height="14" rx="2" stroke="currentColor" transform="rotate(45 12 12)" width="14" x="5" y="5" />
-            <circle cx="12" cy="8" fill="currentColor" r="1.5" />
-            <circle cx="12" cy="16" fill="currentColor" r="1.5" />
-            <circle cx="16" cy="12" fill="currentColor" r="1.5" />
-            <path d="M12 9.5v5M12 12h2.5" />
-          </svg>
-          <span className="font-mono font-bold text-xs uppercase tracking-tight">Git</span>
-        </div>
+        ))}
       </div>
     </section>
   );

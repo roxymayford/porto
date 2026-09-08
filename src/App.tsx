@@ -8,7 +8,6 @@ import { Projects } from "@/components/Projects";
 import { Certifications } from "@/components/Certifications";
 import { Experience } from "@/components/Experience";
 import { ContactCTA } from "@/components/ContactCTA";
-import { AnimatedFooter } from "@/components/ui/animated-footer";
 import { Footer } from "@/components/Footer";
 import { useScrollMotion } from "@/hooks/useScrollMotion";
 
@@ -22,7 +21,7 @@ export function App() {
 
       <div 
         ref={scrollContainerRef}
-        className="bg-[#FAF9F5] text-brand-dark font-sans antialiased border-x-0 md:border-x-4 border-black max-w-7xl mx-auto min-h-screen selection:bg-brand-lime selection:text-black"
+        className="bg-[#1F2022] text-[#E8F8F5] font-sans antialiased border-x-0 md:border-x-4 border-[#292929] max-w-7xl mx-auto min-h-screen selection:bg-[#FF4F00] selection:text-white"
       >
         {/* Top Navigation */}
         <Navbar />
@@ -36,7 +35,7 @@ export function App() {
           <Skills />
 
           {/* Featured Projects & Certifications Section */}
-          <section className="border-b-4 border-black" data-purpose="featured-projects-and-certifications" id="projects">
+          <section className="border-b-4 border-[#292929]" data-purpose="featured-projects-and-certifications" id="projects">
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <Projects />
               <Certifications />
@@ -44,7 +43,7 @@ export function App() {
           </section>
 
           {/* Experience & CTA Section */}
-          <section className="border-b-4 border-black" data-purpose="experience-and-contact-cta" id="experience">
+          <section className="border-b-4 border-[#292929]" data-purpose="experience-and-contact-cta" id="experience">
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <Experience />
               <ContactCTA />
@@ -52,28 +51,7 @@ export function App() {
           </section>
         </main>
 
-        {/* Animated Footer Section with ASCII Hand Art & GSAP Reveal */}
-        <section id="animated-footer" className="relative h-[80vh] min-h-[520px] w-full border-b-4 border-black overflow-hidden grid-bg-dark">
-          <AnimatedFooter 
-            headingLines={["Raihan Shandi", "Adrida Meilano"]}
-            headingColors={["#FAF9F5", "#B8FF57"]}
-            leftImage="/animated-footer/integral.png"
-            rightImage="/animated-footer/giratina.png"
-            background="transparent"
-            textColor="#FAF9F5"
-            charColor="#7E69F2"
-            hoverColor="#B8FF57"
-            hoverCharColor="#111111"
-            columns={80}
-            cellSize={20}
-            fontSize={18}
-            parallaxStrength={22}
-            hoverRadius={8}
-            revealOnScroll={true}
-          />
-        </section>
-
-        {/* Base Brutalist Footer */}
+        {/* Modern Neo-Brutalist Footer */}
         <Footer />
       </div>
     </ThemeProvider>

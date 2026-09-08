@@ -247,7 +247,7 @@ export function useScrollMotion() {
 
       // ── 6. Experience Timeline & Contact Section ────────────────────────
       const expSection = document.querySelector("#experience");
-      const expHeader = expSection?.querySelector(".bg-brand-pink") ?? null;
+      const expHeader = expSection?.querySelector(".bg-brand-flame") ?? null;
       const timelineItems = expSection?.querySelectorAll<HTMLElement>(".relative.pl-6 > div.relative, .relative.pl-8 > div.relative") ?? [];
       const contactCard = document.querySelector("[data-purpose='final-call-to-action']");
       const starburstWrapper = document.querySelector(".starburst-scroll-wrapper");
@@ -270,7 +270,7 @@ export function useScrollMotion() {
       if (timelineItems.length > 0) {
         timelineItems.forEach((item) => {
           const marker = item.querySelector("span.absolute");
-          const textContent = item.querySelector(".space-y-1");
+          const textContent = item.querySelector(".space-y-2, .space-y-1");
 
           const tl = gsap.timeline({
             scrollTrigger: {
@@ -336,17 +336,18 @@ export function useScrollMotion() {
         });
       }
 
-      // ── 7. Animated Footer Section Parallax Hint ────────────────────────
-      const animatedFooterSection = document.querySelector("#animated-footer");
-      if (animatedFooterSection) {
-        gsap.from(animatedFooterSection, {
-          opacity: 0.4,
-          duration: 0.8,
-          ease: "power2.out",
-          clearProps: "opacity",
+      // ── 7. Clean Site Footer Entrance Reveal ───────────────────────────
+      const siteFooter = document.querySelector("[data-purpose='site-footer']");
+      if (siteFooter) {
+        gsap.from(siteFooter, {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          clearProps: "all",
           scrollTrigger: {
-            trigger: animatedFooterSection,
-            start: "top 90%",
+            trigger: siteFooter,
+            start: "top 95%",
             once: true,
           },
         });
