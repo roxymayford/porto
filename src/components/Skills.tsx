@@ -1,69 +1,38 @@
 import * as React from "react";
 
-interface SkillItem {
-  name: string;
-  category: string;
-  level: string;
-  pillColor: string;
-}
-
+interface SkillItem { name: string; category: string }
 const skillsData: SkillItem[] = [
-  { name: "React.js", category: "Frontend", level: "Expert", pillColor: "text-[#00BFFF]" },
-  { name: "TypeScript", category: "Language", level: "Senior", pillColor: "text-[#00BFFF]" },
-  { name: "Next.js", category: "Full-Stack", level: "Production", pillColor: "text-[#FF4F00]" },
-  { name: "Node.js", category: "Backend", level: "Advanced", pillColor: "text-[#5D3FD3]" },
-  { name: "Go / Golang", category: "Backend", level: "Advanced", pillColor: "text-[#00BFFF]" },
-  { name: "Tailwind CSS", category: "Styling", level: "Expert", pillColor: "text-[#FF4F00]" },
-  { name: "Docker", category: "DevOps", level: "Production", pillColor: "text-[#D5006D]" },
-  { name: "PostgreSQL", category: "Database", level: "Advanced", pillColor: "text-[#00BFFF]" },
-  { name: "Git / CI/CD", category: "Workflow", level: "Expert", pillColor: "text-[#FF6F00]" },
-  { name: "Performance", category: "Core", level: "99+ Score", pillColor: "text-[#FFEA00]" },
+  { name: "PyTorch & Transformers", category: "Machine Learning" },
+  { name: "Model Quantization & ONNX", category: "Machine Learning" },
+  { name: "TypeScript & Strict Systems", category: "Engineering Core" },
+  { name: "Go / Microservices", category: "Engineering Core" },
+  { name: "React, Vite & Next.js", category: "Frontend Systems" },
+  { name: "Docker & CI/CD Pipelines", category: "Infrastructure" },
+  { name: "PostgreSQL & Redis Caching", category: "Data Storage" },
+  { name: "Sub-100ms Inference Systems", category: "Performance" },
 ];
 
 export function Skills() {
   return (
-    <section className="border-b-4 border-[#292929] bg-[#1F2022] flex flex-col md:flex-row items-stretch" data-purpose="skills-marquee" id="skills">
-      {/* Brand Header */}
-      <div className="bg-[#292929] text-[#E8F8F5] px-6 sm:px-8 py-6 flex items-center justify-between md:justify-center gap-4 border-b-4 md:border-b-0 md:border-r-4 border-[#292929] min-w-[220px]">
-        <div>
-          <span className="font-mono text-xs font-bold text-[#FF4F00] block uppercase tracking-widest">Stack</span>
-          <span className="font-black text-2xl uppercase tracking-tight text-white">SKILLS</span>
-        </div>
-        <div className="w-9 h-9 bg-[#1F2022] text-[#FFEA00] border border-[#292929] flex items-center justify-center font-black">
-          ⚡
-        </div>
-      </div>
-
-      {/* Tech Stack Responsive Grid */}
-      <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-[#292929] bg-[#1F2022]">
-        {skillsData.map((skill, index) => (
-          <div 
-            key={index}
-            className="p-4 sm:p-5 flex flex-col justify-between hover:bg-[#292929] transition-all cursor-default group border-b sm:border-b-0 border-[#292929]"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#E8F8F5]/50">
-                {skill.category}
-              </span>
-              <span className={`font-mono text-[9px] font-black uppercase px-2 py-0.5 border border-[#292929] bg-[#1F2022] ${skill.pillColor}`}>
-                {skill.level}
-              </span>
-            </div>
-
-            <div>
-              <h3 className="font-black text-base text-[#E8F8F5] tracking-tight group-hover:text-[#FF4F00] transition-colors">
-                {skill.name}
-              </h3>
-            </div>
-
-            <div className="w-full h-1 bg-[#292929] mt-3 overflow-hidden">
-              <div 
-                className="h-full bg-[#FF4F00]"
-                style={{ width: `${80 + (index % 3) * 7}%` }}
-              ></div>
-            </div>
+    <section className="bg-[#131824] px-6 py-20 text-[#e9edf3] sm:px-10 lg:px-16 lg:py-28" data-purpose="capabilities-overview" id="skills">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
+          <div>
+            <h2 className="text-5xl font-extrabold leading-[.95] tracking-[-.04em] sm:text-7xl">Capabilities</h2>
+            <p className="mt-5 text-lg leading-relaxed text-[#a4adbc]">
+              Practical domains where I deliver end-to-end reliability, from mathematical model training to scalable production web services.
+            </p>
           </div>
-        ))}
+
+          <div className="space-y-6">
+                        {skillsData.map((skill) => (
+                          <div key={skill.name} className="flex flex-col justify-between pb-6 sm:flex-row sm:items-baseline">
+                            <span className="text-2xl font-bold tracking-tight text-[#e9edf3] sm:text-3xl">{skill.name}</span>
+                            <span className="mt-2 text-base font-medium text-[#5a9bfc] sm:mt-0">{skill.category}</span>
+                          </div>
+                        ))}
+                      </div>
+        </div>
       </div>
     </section>
   );

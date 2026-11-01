@@ -3,122 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --brand-flame: #FF4F00;
-  --brand-cyan: #00BFFF;
-  --brand-magenta: #D5006D;
-  --brand-yellow: #FFEA00;
-  --brand-purple: #5D3FD3;
-  --brand-lemon: #FFF700;
-  --brand-charcoal: #292929;
-  --brand-ice: #E8F8F5;
-  --brand-amber: #FF6F00;
-  --brand-obsidian: #1F2022;
+  --bg: #0a0d14;
+  --surface: #131824;
+  --ink: #e9edf3;
+  --muted: #a4adbc;
+  --accent: #5a9bfc;
+  --accent-ink: #0a0d14;
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  /* Cohesive Subtle Grids on Obsidian */
-  .grid-bg-obsidian {
-    background-color: #1F2022;
-    background-image: 
-      linear-gradient(to right, rgba(232, 248, 245, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(232, 248, 245, 0.05) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-
-  .grid-bg-charcoal {
-    background-color: #292929;
-    background-image: 
-      linear-gradient(to right, rgba(255, 79, 0, 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 79, 0, 0.06) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .grid-bg-subtle {
-    background-color: #1F2022;
-    background-image: 
-      linear-gradient(to right, rgba(232, 248, 245, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(232, 248, 245, 0.04) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  /* Tactile Brutalist Interactive Buttons */
-  .btn-brutal {
-    transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.1s cubic-bezier(0.2, 0, 0, 1), background-color 0.15s ease;
-  }
-  .btn-brutal:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px #FF4F00;
-  }
-  .btn-brutal:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #FF4F00;
-  }
-
-  .btn-brutal-dark:hover {
-    box-shadow: 5px 5px 0px #00BFFF;
-  }
-
-  /* Starburst SVG accent spin */
-  .starburst-badge {
-    animation: slow-spin 20s linear infinite;
-  }
-
-  /* Pulse Glow Animation */
-  .pulse-glow {
-    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  /* Utility to suppress scrollbars on inner containers */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-    width: 0 !important;
-    height: 0 !important;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-@keyframes slow-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes pulse-ring {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.08); }
-}
-
-/* ── Global Scrollbar Styling ───────────────────────────────────────────── */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #FF4F00 #1F2022;
-  background-color: #1F2022;
-}
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #1F2022;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #FF4F00;
-  border-radius: 0;
-  border: 1px solid #1F2022;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #00BFFF;
-}
-
-/* Prevent GSAP-animated elements from showing overflow artifacts during entrance */
-[data-purpose='skills-marquee'],
-[data-purpose='certifications-sidebar'] {
-  overflow: hidden;
-}
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; background: var(--bg); }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--bg); color: var(--ink); }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 3px solid #9bc1ff; outline-offset: 4px; }
 
 .btn-brutal {
-  position: relative;
-  z-index: 1;
+  align-items: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 48px;
+  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+.btn-brutal:hover { transform: translateY(-2px); }
+.btn-brutal:active { transform: translateY(0); }
+
+[data-purpose="main-navigation"] { background: var(--bg); }
+[data-purpose="main-navigation"] > div { max-width: 1440px; }
+[data-purpose="main-navigation"] button { border-radius: 0; }
+[data-purpose="main-navigation"] button:hover { color: var(--accent); }
+
+main section { scroll-margin-top: 76px; }
+main h1, main h2, main h3, main p { font-family: "Cabinet Grotesk", system-ui, sans-serif; }
+
+@media (max-width: 640px) {
+  [data-purpose="main-navigation"] > div { padding-inline: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
