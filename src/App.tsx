@@ -47,7 +47,7 @@ function MainLayout() {
       >
         <div>
           <Navbar />
-          <main key={currentPage}>
+          <main id="main-content" key={currentPage}>
             {renderCurrentPage()}
           </main>
         </div>

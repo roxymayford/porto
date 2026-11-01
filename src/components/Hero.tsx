@@ -2,7 +2,7 @@ import * as React from "react";
 
 export function Hero() {
   return (
-    <section className="min-h-[calc(100svh-80px)] bg-[#5a9bfc] px-6 py-8 text-[#0a0d14] sm:px-10 lg:px-16" data-purpose="hero-banner">
+    <section className="relative min-h-[calc(100svh-80px)] bg-[#5a9bfc] px-6 py-8 text-[#0a0d14] sm:px-10 lg:px-16" data-purpose="hero-banner">
       <div className="mx-auto grid min-h-[calc(100svh-144px)] max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
         {/* Left column */}
         <div className="flex flex-col justify-between py-6 lg:col-span-8 lg:py-12">
@@ -29,7 +29,7 @@ export function Hero() {
         </div>
 
         {/* Right column: Portrait */}
-        <figure className="relative hidden h-[min(70svh,620px)] overflow-hidden bg-[#131824] lg:col-span-4 lg:block">
+        <figure className="relative hidden h-[min(70svh,620px)] overflow-hidden bg-[#131824] lg:col-span-4 lg:block" data-purpose="hero-showcase">
           <img
             src="/profile.jpg"
             alt="Portrait of Raihan Shandi Adrida Meilano"
