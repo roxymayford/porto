@@ -89,7 +89,6 @@ export function useScrollMotion() {
       if (skillsHeader) {
         gsap.from(skillsHeader, {
           y: 20,
-          opacity: 0,
           duration: 0.6,
           ease: "power3.out",
           clearProps: "all",
@@ -104,7 +103,6 @@ export function useScrollMotion() {
       if (skillItems.length > 0) {
         gsap.from(skillItems, {
           y: 16,
-          opacity: 0,
           duration: 0.5,
           stagger: 0.06,
           ease: "power3.out",
@@ -125,7 +123,6 @@ export function useScrollMotion() {
       if (projectHeader) {
         gsap.from(projectHeader, {
           y: 20,
-          opacity: 0,
           duration: 0.6,
           ease: "power3.out",
           clearProps: "all",
@@ -140,7 +137,6 @@ export function useScrollMotion() {
       if (projectCard) {
         gsap.from(projectCard, {
           y: 28,
-          opacity: 0,
           duration: 0.7,
           ease: "power3.out",
           clearProps: "all",
@@ -160,7 +156,6 @@ export function useScrollMotion() {
       if (certHeading) {
         gsap.from(certHeading, {
           y: 20,
-          opacity: 0,
           duration: 0.55,
           ease: "power3.out",
           clearProps: "all",
@@ -175,7 +170,6 @@ export function useScrollMotion() {
       if (certCards.length > 0) {
         gsap.from(certCards, {
           y: 20,
-          opacity: 0,
           duration: 0.55,
           stagger: 0.08,
           ease: "power3.out",
@@ -197,7 +191,6 @@ export function useScrollMotion() {
       if (expHeader) {
         gsap.from(expHeader, {
           y: 20,
-          opacity: 0,
           duration: 0.6,
           ease: "power3.out",
           clearProps: "all",
@@ -212,7 +205,6 @@ export function useScrollMotion() {
       if (timelineItems.length > 0) {
         gsap.from(timelineItems, {
           y: 20,
-          opacity: 0,
           duration: 0.55,
           stagger: 0.08,
           ease: "power3.out",
@@ -229,7 +221,6 @@ export function useScrollMotion() {
       if (contactCard) {
         gsap.from(contactCard, {
           y: 24,
-          opacity: 0,
           duration: 0.7,
           ease: "power3.out",
           clearProps: "all",
@@ -247,7 +238,6 @@ export function useScrollMotion() {
         if (siteFooter) {
           gsap.from(siteFooter, {
             y: 20,
-            opacity: 0,
             duration: 0.6,
             ease: "power3.out",
             clearProps: "all",
