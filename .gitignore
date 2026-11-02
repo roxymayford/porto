@@ -19,6 +19,11 @@ pids
 # Dependency directories
 node_modules/
 
+# Agent skills and generated design-audit artifacts
+.agents/
+.taste-skill/
+/assets/
+
 # Production build outputs
 dist/
 dist-ssr/

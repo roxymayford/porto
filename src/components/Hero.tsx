@@ -1,7 +1,13 @@
 import * as React from "react";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import * as THREE from "three";
+import { Scene } from "three/src/scenes/Scene.js";
+import { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera.js";
+import { WebGLRenderer } from "three/src/renderers/WebGLRenderer.js";
+import { BufferGeometry } from "three/src/core/BufferGeometry.js";
+import { BufferAttribute } from "three/src/core/BufferAttribute.js";
+import { PointsMaterial } from "three/src/materials/PointsMaterial.js";
+import { Points } from "three/src/objects/Points.js";
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -25,19 +31,19 @@ export function Hero() {
       }
     }, hero);
 
-    let renderer: THREE.WebGLRenderer | undefined;
-    let geometry: THREE.BufferGeometry | undefined;
-    let material: THREE.PointsMaterial | undefined;
+    let renderer: WebGLRenderer | undefined;
+    let geometry: BufferGeometry | undefined;
+    let material: PointsMaterial | undefined;
     let frame = 0;
     let onPointerMove: ((event: PointerEvent) => void) | undefined;
     let onResize: (() => void) | undefined;
 
     if (!media.matches && window.matchMedia("(pointer: fine)").matches) {
       try {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+        const scene = new Scene();
+        const camera = new PerspectiveCamera(38, 1, 0.1, 100);
         camera.position.z = 15;
-        renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         const coords = new Float32Array(180 * 3);
         for (let i = 0; i < 180; i++) {
@@ -45,10 +51,10 @@ export function Hero() {
           coords[i * 3 + 1] = (Math.random() - 0.5) * 11;
           coords[i * 3 + 2] = (Math.random() - 0.5) * 3;
         }
-        geometry = new THREE.BufferGeometry();
-        geometry.setAttribute("position", new THREE.BufferAttribute(coords, 3));
-        material = new THREE.PointsMaterial({ color: 0x0a0d14, size: 0.045, transparent: true, opacity: 0.32 });
-        const field = new THREE.Points(geometry, material);
+        geometry = new BufferGeometry();
+        geometry.setAttribute("position", new BufferAttribute(coords, 3));
+        material = new PointsMaterial({ color: 0x0a0d14, size: 0.045, transparent: true, opacity: 0.32 });
+        const field = new Points(geometry, material);
         scene.add(field);
         onResize = () => {
           const { width, height } = hero.getBoundingClientRect();
