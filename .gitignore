@@ -29,7 +29,10 @@ dist/
 dist-ssr/
 build/
 
-# Local env files
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
 *.local
 .env.local
 .env.*.local

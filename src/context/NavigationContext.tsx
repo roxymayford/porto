@@ -28,27 +28,39 @@ const validRoutes: PageRoute[] = [
   "contact",
 ];
 
-function getRouteFromHash(): PageRoute {
-  const hash = window.location.hash.replace("#/", "").replace("#", "").split("?")[0].toLowerCase();
+function getRouteFromLocation(): PageRoute {
+  // Check hash first (#/projects or #projects)
+  const hash = window.location.hash.replace(/^#\/?/, "").split("?")[0].toLowerCase();
   if (validRoutes.includes(hash as PageRoute)) {
     return hash as PageRoute;
   }
+
+  // Fallback to pathname (/projects or /projects/) for clean URLs & direct Vercel SPA routing
+  const pathname = window.location.pathname.replace(/^\/|\/$/g, "").split("/")[0].toLowerCase();
+  if (validRoutes.includes(pathname as PageRoute)) {
+    return pathname as PageRoute;
+  }
+
   return "home";
 }
 
 export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentPage, setCurrentPage] = useState<PageRoute>(getRouteFromHash);
+  const [currentPage, setCurrentPage] = useState<PageRoute>(getRouteFromLocation);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const page = getRouteFromHash();
+    const handleLocationChange = () => {
+      const page = getRouteFromLocation();
       setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    window.addEventListener("hashchange", handleLocationChange);
+    window.addEventListener("popstate", handleLocationChange);
+    return () => {
+      window.removeEventListener("hashchange", handleLocationChange);
+      window.removeEventListener("popstate", handleLocationChange);
+    };
   }, []);
 
   const navigateTo = (page: PageRoute, targetId?: string) => {
